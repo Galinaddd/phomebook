@@ -6,7 +6,6 @@ import { useGetContactsQuery } from '../../redux/contactsApiSlice';
 export const ContactList = () => {
   const { data, isSuccess } = useGetContactsQuery();
   const filter = useSelector(selectFilter);
-
   const filterNormalised = filter.toLowerCase();
 
   let contacts = [];

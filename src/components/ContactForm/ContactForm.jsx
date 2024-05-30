@@ -7,9 +7,9 @@ import { nanoid } from '@reduxjs/toolkit';
 
 export const ContactForm = () => {
   const { data: contacts } = useGetContactsQuery();
-  const [addContact] = useAddContactMutation();
+  const [addContact /*, { data }*/] = useAddContactMutation();
 
-  const handleSubmit = (values, { resetForm }) => {
+  const handleSubmit = async (values, { resetForm }) => {
     const { name, number } = values;
     const newContact = { name, number, id: nanoid() };
     const isInContacts = contacts.find(contact => contact.name === name);
@@ -18,7 +18,7 @@ export const ContactForm = () => {
       alert(`${name} is  already in contacts`);
     } else {
       resetForm();
-      addContact(newContact);
+      // const data1 = await addContact(newContact);
     }
   };
   return (
