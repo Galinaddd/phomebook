@@ -1,11 +1,9 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
+import { baseQuery } from './baseQueryConfig';
 
 export const contactsApi = createApi({
   reducerPath: 'Contacts',
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'https://goit-task-manager.herokuapp.com/',
-    // baseUrl: 'https://63ebcd0132a0811723925348.mockapi.io',
-  }),
+  baseQuery: baseQuery,
   tagTypes: ['contacts'],
   endpoints: builder => ({
     getContacts: builder.query({

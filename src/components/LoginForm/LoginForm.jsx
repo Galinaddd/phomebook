@@ -1,5 +1,6 @@
 import { Formik, Form, Field } from 'formik';
 import { useLoginUserMutation } from '../../redux/authApi';
+import { redirect } from 'react-router-dom';
 
 export const LoginForm = () => {
   const [login, { data }] = useLoginUserMutation();
@@ -8,7 +9,7 @@ export const LoginForm = () => {
     const {
       data: { token },
     } = await login({
-      email: values.login,
+      email: values.login.trim().toLowerCase(),
       password: values.password,
     });
 

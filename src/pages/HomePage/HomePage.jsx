@@ -1,18 +1,11 @@
-import { ContactForm } from 'components/ContactForm/ContactForm';
-import { ContactList } from 'components/ContactList/ContactList';
-import { Filter } from 'components/Filter/Filter';
+import mainImage from '../../images/contactBook.jpg';
 
 export const HomePage = () => {
   return (
     <>
-      <h2>HomePage</h2>
+      <h1>Your contacts are your capital</h1>
 
-      <div>
-        <ContactForm />
-        <h2>Find contact by name</h2>
-        <Filter />
-        <ContactList />
-      </div>
+      <img src={mainImage} weight="50%" alt="contactbook" />
     </>
   );
 };

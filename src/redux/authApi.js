@@ -1,47 +1,10 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
-// import axios from 'axios';
-// axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-// const axiosBaseQuery =
-//   ({ baseUrl } = { baseUrl: '' }) =>
-//   async ({ url, method, data, params, headers }) => {
-//     try {
-//       const result = await axios({
-//         url: baseUrl + url,
-//         method,
-//         data,
-//         params,
-//         headers,
-//       });
-//       return { data: result.data };
-//     } catch (axiosError) {
-//       const err = axiosError;
-//       return {
-//         error: {
-//           status: err.response?.status,
-//           data: err.response?.data || err.message,
-//         },
-//       };
-//     }
-//   };
-
-const baseQuery = fetchBaseQuery({
-  baseUrl: 'https://goit-task-manager.herokuapp.com/',
-  prepareHeaders: (headers, { getState }) => {
-    const token = localStorage.getItem('token') || '';
-
-    console.log('token', token);
-    if (token) {
-      headers.set('authorization', `Bearer ${token}`);
-    }
-    return headers;
-  },
-});
+import { createApi } from '@reduxjs/toolkit/query/react';
+import { baseQuery } from './baseQueryConfig';
 
 export const authApi = createApi({
   reducerPath: 'Auth',
   baseQuery: baseQuery,
-  tagTypes: ['User'],
+  tagTypes: ['Auth'],
   endpoints: builder => ({
     registerUser: builder.mutation({
       query: user => ({
@@ -49,7 +12,7 @@ export const authApi = createApi({
         method: 'POST',
         body: user,
       }),
-      invalidatesTags: ['User'],
+      invalidatesTags: ['Auth'],
     }),
 
     loginUser: builder.mutation({
@@ -58,14 +21,21 @@ export const authApi = createApi({
         method: 'POST',
         body: login,
       }),
-      invalidatesTags: ['User'],
+      invalidatesTags: ['Auth'],
+    }),
+    logoutUser: builder.mutation({
+      query: () => ({
+        url: '/users/logout',
+        method: 'POST',
+      }),
+      invalidatesTags: ['Auth'],
     }),
 
     currentUser: builder.query({
       query: () => ({
         url: 'users/current',
       }),
-      // invalidatesTags: ['User'],
+      invalidatesTags: ['Auth'],
     }),
   }),
 });
@@ -73,4 +43,5 @@ export const {
   useRegisterUserMutation,
   useLoginUserMutation,
   useCurrentUserQuery,
+  useLogoutUserMutation,
 } = authApi;
