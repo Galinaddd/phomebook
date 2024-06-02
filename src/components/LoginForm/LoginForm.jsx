@@ -1,9 +1,9 @@
 import { Formik, Form, Field } from 'formik';
 import { useLoginUserMutation } from '../../redux/authApi';
-import { redirect } from 'react-router-dom';
+// import { redirect } from 'react-router-dom';
 
 export const LoginForm = () => {
-  const [login, { data }] = useLoginUserMutation();
+  const [login] = useLoginUserMutation();
 
   const handleSubmit = async (values, actions) => {
     const {

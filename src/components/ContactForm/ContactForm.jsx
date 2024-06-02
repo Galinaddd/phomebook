@@ -18,7 +18,7 @@ export const ContactForm = () => {
       alert(`${name} is  already in contacts`);
     } else {
       resetForm();
-      const data1 = await addContact(newContact);
+      await addContact(newContact);
     }
   };
   return (

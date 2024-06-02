@@ -2,10 +2,10 @@ import { NavLink, Outlet } from 'react-router-dom';
 
 import css from './SharedLayout.module.css';
 import { UserMenu } from 'components/UserMenu/UserMenu';
-import { useCurrentUserQuery } from '../../redux/authApi';
+// import { useCurrentUserQuery } from '../../redux/authApi';
 
 export const SharedLayout = () => {
-  const { data } = useCurrentUserQuery();
+  // const { data } = useCurrentUserQuery();
   return (
     <>
       <header className={css.header}>

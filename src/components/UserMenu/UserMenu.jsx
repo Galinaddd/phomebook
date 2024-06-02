@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { useCurrentUserQuery, useLoginUserMutation } from '../../redux/authApi';
 
 export const UserMenu = () => {
