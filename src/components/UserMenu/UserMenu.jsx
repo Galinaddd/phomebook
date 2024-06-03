@@ -1,21 +1,34 @@
 // import { useEffect } from 'react';
-import { useCurrentUserQuery, useLoginUserMutation } from '../../redux/authApi';
+import { Navigate } from 'react-router-dom';
+import {
+  useCurrentUserQuery,
+  useLoginUserMutation,
+  useLogoutUserMutation,
+} from '../../redux/authApi';
+import { useSelector } from 'react-redux';
 
 export const UserMenu = () => {
-  const { data } = useCurrentUserQuery();
-  const [logout] = useLoginUserMutation();
+  const { isSuccess, data, currentData } = useCurrentUserQuery();
+
+  const [logout] = useLogoutUserMutation();
 
   const handleLogout = e => {
     logout();
     localStorage.setItem('token', '');
     console.log(data);
+    console.log('click on logout');
+
+    //   <Navigate to="/contacts"/>
   };
 
   console.log(data);
+
+  console.log('currentdata', currentData);
+
   return (
     <>
       <div>
-        {data && (
+        {isSuccess && data && (
           <>
             <p>{data.name}</p>
             <button type="submit" onClick={handleLogout}>
